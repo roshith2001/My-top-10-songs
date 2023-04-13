@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import './App.css';
 
-import Header from './components/header';
+import Header from './components/Header';
 import DisplayTable from './components/DisplayTable';
 import SongDetails from './components/SongDetails';
 
