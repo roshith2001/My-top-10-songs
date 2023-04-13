@@ -1,0 +1,14 @@
+Song Name: {arrayItem.track.name}
+
+{arrayItem.track.artists.map((artist, index) => 
+            <><span key={ index }> {artist.name} </span> &nbsp;</>
+
+   { arrayItem.track.album.images[0].url}   
+
+   {arrayItem.track.external_urls.spotify}       
+   <SongDetailTable rowHeading='Artist' 
+            rowBody={arrayItem.track.artists.map((artist) => artist.name).join(', ')}/>
+
+{ arrayItem.track.album.release_date }
+{ timeString }
+{ arrayItem.track.album.name }
