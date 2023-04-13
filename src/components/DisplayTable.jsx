@@ -43,7 +43,7 @@ const DisplayTable = (props) => {
                 Thank you for your understanding.  
             </p>
             <form onSubmit={ handleSubmit } className='p-6 w-5/6 flex flex-col 
-                items-center text-center' netlify>
+                items-center text-center' name="Email-Gathering" netlify>
                 <label htmlFor='email'>Enter your email 
                     related to your Spotify account below</label>
                 <input className=" w-5/6 border-2 border-zinc-500 
