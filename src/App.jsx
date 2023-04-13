@@ -34,6 +34,7 @@ function App() {
   useEffect(() => {
     // Attach event listener to the beforeunload event
     const handleBeforeUnload = () => {
+      Cookies.remove("token");
       window.localStorage.clear(); // Clear localStorage
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
