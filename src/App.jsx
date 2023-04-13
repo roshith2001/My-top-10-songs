@@ -10,10 +10,10 @@ import SongDetails from './components/SongDetails';
 function App() {
   const [songsArray, setSongsArray] = useState([]);
   const [token, setToken] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthorized, setIsAuthorized] = useState(true);
 
   const CLIENT_ID = '5f003b83688d434a884e22441ae85f4f';
-  const REDIRECT_URI = 'https://hearmy10.netlify.app';
+  const REDIRECT_URI = 'http://https://hearmy10.netlify.app';
   const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
   const RESPONSE_TYPE = 'token';
 
@@ -57,25 +57,33 @@ function App() {
     .then(response => {
       setSongsArray(response);
       console.log(response);
+  
     })
     .catch(error => {
       console.log("Error");
+      setIsAuthorized(false);
     })
   }, [token]);
 
   return (
       <div className="App">
         { !token ?
-        <a href= {`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a> : 
-        null
-        }
-        <Header />
-        <Router>
-          <Routes>
-            <Route exact path="/" element={<DisplayTable songs={songsArray} />} />  
-            <Route path="/song/:id" element={<SongDetails songs={songsArray} />} />
-          </Routes>
-        </Router>
+        <div className='flex justify-center items-center h-screen'> 
+        <a className='bg-green-500 p-4 w-4/12 text-center 
+          rounded-xl font-bold hover:bg-green-400 shadow-xl'
+        href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+        >Login to Spotify</a></div>
+        : 
+        <div>
+          <Header />
+          <Router>
+            <Routes>
+              <Route exact path="/" element={<DisplayTable songs={songsArray} authorization= {isAuthorized} />} />  
+              <Route path="/song/:id" element={<SongDetails songs={songsArray} />} />
+            </Routes>
+          </Router>
+        </div>
+}
       </div>
   );
 }
