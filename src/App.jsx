@@ -13,7 +13,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   const CLIENT_ID = '5f003b83688d434a884e22441ae85f4f';
-  const REDIRECT_URI = 'http://localhost:5173';
+  const REDIRECT_URI = 'https://hearmy10.netlify.app';
   const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
   const RESPONSE_TYPE = 'token';
 
