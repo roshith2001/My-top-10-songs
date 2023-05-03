@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from 'react';
 
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 import SongTile from './SongTile';
 
 
 const DisplayTable = (props) => {
 
+    const [email, setEmail] = useState('');
+
     const[formSubmitted, setFormSubmitted] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+         
+        try{
+            const docRef = await addDoc(collection(db,"Emails Collected"),{
+                Email: email,
+            });
+            console.log("Document written with ID: ", docRef.id);
+        }catch(e){
+            console.log("Error adding Document: ",e)
+        }
         setFormSubmitted(true);
     }
     
@@ -47,7 +60,8 @@ const DisplayTable = (props) => {
                 <label htmlFor='email'>Enter your email 
                     related to your Spotify account below</label>
                 <input className=" w-5/6 border-2 border-zinc-500 
-                    rounded-md my-4" type='email' name="email" required/>
+                    rounded-md my-4" type='email' name="email" required
+                    onChange={(e) => {setEmail(e.target.value)}}/>
                 <input type='submit' value='Submit' className='bg-zinc-900
                     border-zinc-500 hover:bg-zinc-600 text-zinc-300 border 
                     rounded-md p-2'/>
