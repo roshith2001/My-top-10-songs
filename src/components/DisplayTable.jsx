@@ -16,7 +16,7 @@ const DisplayTable = (props) => {
         e.preventDefault();
          
         try{
-            const docRef = await addDoc(collection(db,"Emails Collected"),{
+            const docRef = await addDoc(collection(db,"Emails"),{
                 Email: email,
             });
             console.log("Document written with ID: ", docRef.id);
